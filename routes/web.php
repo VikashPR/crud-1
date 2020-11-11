@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PagesController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('', "PagesController@index");
+Route::get('/services', "PagesController@service");
+Route::get('/about', "PagesController@about");
+
+
+Route::resource('posts', 'PostController');
