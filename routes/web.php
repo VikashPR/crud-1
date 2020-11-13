@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PagesController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +28,6 @@ Route::get('/about', "PagesController@about");
 
 
 Route::resource('posts', 'PostController');
+
+
+

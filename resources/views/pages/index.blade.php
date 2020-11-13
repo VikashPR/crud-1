@@ -1,3 +1,4 @@
+
 @extends('layouts.crud')
 
 @section('title')
@@ -8,9 +9,15 @@
 
 <div class="jumbotron text-center">
     <h1>{{$message}}</h1>
-    <br>
-    This is the laravel application done by vikash </>
-    <p><a href="/lsapp/public/login" class="btn btn-success">Login</a> <a href="/lsapp/public/register"
-            class="btn btn-primary">signup</a></p>
+<p>This application is made by vikash</p>
+    @guest
+    <p><a href="/lsapp/public/register" class="btn btn-success">signup</a>
+        @if (Route::has('register'))
+        <a href="/lsapp/public/login" class="btn btn-primary">login</a></p>
+
+    @endif
+    @else
+    @include('home')
+    @endguest
 </div>
 @endsection

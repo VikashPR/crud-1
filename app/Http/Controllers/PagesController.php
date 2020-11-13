@@ -1,15 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function index()
     {
-        $title="welcome to Webilicious";
-        return view('pages.index')->with('message',$title);
+        if(auth()->user() === null)
+        {
+            // return 'if is running';
+            $mesg = 'Please login';
+            
+            return redirect('/login');
+        }
+        
+        else
+        {
+            
+            $user_id = auth()->user()->id;
+            // print $user_id;
+            $user = User::find($user_id);
+            $title="welcome to Webilicious";
+            return view('pages.index')->with('message',$title)->with('posts',$user->posts);
+        }
     }
     public function about()
     {

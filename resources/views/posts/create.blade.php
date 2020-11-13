@@ -7,7 +7,7 @@
 
 @section('content')
 <h1>Create a POST</h1>
-<form action="{{ action('PostController@store') }}" method="post">
+<form action="{{action('PostController@store')}}" method="post">
     @csrf
 <div class="form-group">
 <label><h4>Title</h4></label>

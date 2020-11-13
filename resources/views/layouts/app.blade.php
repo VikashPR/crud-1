@@ -20,13 +20,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    {{-- @include('inc.navbar') --}}
-    <div id="app">
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
-                </a>    
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -71,7 +70,49 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
+
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
+            <h5 class="my-0 mr-md-auto font-weight-normal "><a class="text-white" href="/lsapp/public/">WEBILICIOUS</a> </h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-1 text-white" href="/lsapp/public/">HOME</a>
+                <a class="p-1 text-white" href="/lsapp/public/posts">POSTS</a>
+                <a class="p-1 text-white" href="/lsapp/public/posts/create">NEW_POST</a>
+                <a class="p-1 text-white" href="/lsapp/public/about">ABOUT</a>
+                <a class="p-1 text-white" href="/lsapp/public/services">SERVICES</a>
+                
+                
+                    @guest
+                        
+                            <a class=" p-1 text-white" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
+                        
+                        @if (Route::has('register'))
+                                <a class="p-1 text-white" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
+                        @endif
+                    @else
+                            <a id="navbarDropdown" class="dropdown-toggle p-1 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+                            
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-dark" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('LOGOUT') }}
+                                </a>
+                                <a class="dropdown-item  text-dark" href="/lsapp/public/"> HOME</a>
+        
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none p-1 text-white">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
+            </nav>
+            
+            
+        </div>
 
         <main class="py-4">
             @yield('content')

@@ -15,6 +15,7 @@
 </div>
 <hr>
 <small>{{$post->created_at}}</small> 
+
 <hr>
 <br>
 <a href="/lsapp/public/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
@@ -24,5 +25,9 @@
 @csrf
  <button type="submit" class="btn btn-danger float-sm-right">DELETE</button>
 </form>
+
+{{-- {{$post->title}}
+{{$post->body}} --}}
+
 @endsection
 
